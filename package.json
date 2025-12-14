@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "name": "chat-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^5.1.0",
+    "jose": "^6.1.1",
+    "socket.io": "^4.8.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}
