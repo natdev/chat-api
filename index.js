@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS messages(
 
 const app = express();
 const env = process.env.NODE_ENV || 'development';
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const httpServer = createServer(app);
 const url = env === 'development' ? 'http://localhost:4200' : 'https://chat-app-2vhb.onrender.com';
 const io = new Server(httpServer, {
