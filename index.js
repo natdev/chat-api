@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS messages(
 const app = express();
 const env = process.env.NODE_ENV || 'development';
 const httpServer = createServer(app);
-const url = env === 'development' ? 'http://localhost:4200' : 'https://your-production-domain.com';
+const url = env === 'development' ? 'http://localhost:4200' : 'https://chat-app-2vhb.onrender.com';
 const io = new Server(httpServer, {
   cors: {
     origin: url,
