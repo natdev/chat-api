@@ -5,8 +5,9 @@ import cors from 'cors';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import * as jose from 'jose';
+import dotenv from 'dotenv';
 
-
+const config = dotenv.config();
 const db =  await open({
   filename: './chat.db',
   driver: sqlite3.Database
@@ -31,15 +32,17 @@ CREATE TABLE IF NOT EXISTS messages(
 );`);
 
 const app = express();
+const env = process.env.NODE_ENV || 'development';
 const httpServer = createServer(app);
+const url = env === 'development' ? 'http://localhost:4200' : 'https://your-production-domain.com';
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:4200',
+    origin: url,
     methods: ['GET', 'POST'],
   }
 })
 
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: url }));
 app.use(express.json());
 app.post('/subscribe', async (req, res) => {
   await db.run('INSERT INTO users (username, password) VALUES (?, ?)', [req.body.username, req.body.password]);
